@@ -1,0 +1,29 @@
+.worldMap path{
+    fill: none;
+    stroke: black;
+}
+
+.worldMap .sphere{
+    fill: var(--lighterGray);
+    stroke: var(--lightGray);
+}
+
+.worldMap .graticules{
+    fill: none;
+    stroke: var(--lightGray);
+}
+
+.worldMap .land{
+    fill: var(--lightGray);
+    stroke: var(--gray);
+}
+
+.worldMap .interiors{
+    fill: none;
+    stroke: var(--gray);
+}
+
+.worldMap .circle{
+    fill: var(--darkGreen);
+    opacity: 0.5;
+}

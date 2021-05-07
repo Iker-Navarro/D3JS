@@ -1,0 +1,50 @@
+:root {
+  --darkGreen: #137b80;
+  --lighterGray: #fbfbfb;
+  --lightGray: #c0c0bb;
+  --gray: #8a8a8a;
+  --darkGray: #635f5d;
+  --darkerGray: #383534;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  color: var(--darkGray);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+svg{
+  display: block;
+  margin: auto;
+}
+
+.tick text{
+  fill: var(--darkGray);
+}
+
+.tick line {
+  stroke: var(--lightGray);
+}
+
+.marks{
+  stroke: var(--darkGreen);
+}
+
+.domain{
+  stroke: var(--darkGray);
+}
+
+.marker circle {
+  fill: var(--darkGray);
+}
+
+.marker text{
+  fill: var(--darkerGray);
+  font-size: .8em;
+}
+
+rect.mark{
+  fill: var(--darkGreen)
+}
