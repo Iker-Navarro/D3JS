@@ -14,7 +14,7 @@ export const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand d-flex align-items-center" to="/">
             <img src="/img/covid-icon.png" className="mr-3" width="32" alt="logo"/>
-            COVID DATAVIZ
+            COVID-19 DATAVIZ
         </NavLink>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

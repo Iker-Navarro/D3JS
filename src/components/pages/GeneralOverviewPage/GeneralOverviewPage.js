@@ -1,5 +1,7 @@
 import { format } from "d3-format";
-import { Route, useRouteMatch } from "react-router";
+import { Redirect, Route, useRouteMatch } from "react-router";
+import { Loading } from "../../layout/Loading/Loading";
+import { NoOptionSelected } from "../../layout/NoOptionSelected/NoOptionSelected";
 import { InfoCard } from "./InfoCard/InfoCard";
 import { OverviewTopicSelection } from "./OverviewTopicSelection/OverviewTopicSelection";
 
@@ -21,9 +23,8 @@ export const GeneralOverviewPage = ({data, width}) => {
     // Hook to get information about the current route
     const { path, url } = useRouteMatch();
 
-    // TODO - Add loading
     if(!data)
-        return (<div>loading</div>)
+        return(<Loading />);
 
     // destructuring data
     const [deaths, cases, recovered] = data;
@@ -41,11 +42,7 @@ export const GeneralOverviewPage = ({data, width}) => {
 
             <hr></hr>
             <Route path={`${path}`} exact>
-                <div className="jumbotron jumbotron-fluid">
-                    <div className="container">
-                        <p className="lead m-0 text-center">Select the data to be displayed from the options shown above.</p>
-                    </div>
-                </div>
+                <NoOptionSelected />
             </Route>
             <Route path={`${path}/recovered`}>
                 <OverviewTopicSelection title="RECOVERED" data={recovered} yValueIncrement={yValueIncrement} yValueTotal={yValueTotal} width={width} />
@@ -56,6 +53,7 @@ export const GeneralOverviewPage = ({data, width}) => {
             <Route path={`${path}/deaths`}>
                 <OverviewTopicSelection title="DEATHS" data={deaths} yValueIncrement={yValueIncrement} yValueTotal={yValueTotal} width={width} />
             </Route>
+            <Redirect to={path} />
         </>
 
     )

@@ -42,7 +42,7 @@ export const InfoCard = ({data, title, imgSrc, to, formatter}) => {
                     </ul>
                 </div>
                 <div className="card-footer">
-                    <Link className="btn btn-info w-100" to={to}> View chart </Link>
+                    <Link className="btn customButton w-100" to={to}> View chart </Link>
                 </div>
             </div>
         </div>

@@ -67,6 +67,7 @@ export const Histogram = ({data, xValue, innerWidth, innerHeight, setBrushExtent
             {
                 binnedData.map(d => (
                     <rect
+                        key={Math.random()}
                         className="mark"
                         x={xScale(d.x0)}
                         y={yScale(d.y)}

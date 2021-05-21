@@ -1,3 +1,6 @@
+/* MAIN CSS FILE */
+
+/* VARIABLES */
 :root {
   --darkGreen: #137b80;
   --lighterGray: #fbfbfb;
@@ -7,6 +10,7 @@
   --darkerGray: #383534;
 }
 
+/* GENERIC STYLES FOR THE ENTIRE APPLICATION */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -15,11 +19,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* CENTER SVG ELEMENTS BY DEFAULT */
 svg{
   display: block;
   margin: auto;
 }
 
+/* CUSTOM COLORS FOR BOOTSTRAP BUTTONS AND TEXTS */
+.customButton{
+  background-color: var(--darkGreen) !important;
+  color: white;
+}
+
+.customButton:hover{
+  background-color: #106569 !important;
+  color: white;
+}
+
+.customColor{
+  color: var(--darkGreen);
+}
+
+/* STANDARD CLASSES TO BE USED FOR ALL THE DATA VISUALIZATIONS */
 .tick text{
   fill: var(--darkGray);
 }
@@ -47,4 +68,37 @@ svg{
 
 rect.mark{
   fill: var(--darkGreen)
+}
+
+.worldMap path{
+  fill: none;
+}
+
+.choroplethMap path{
+  stroke: var(--darkerGray);
+}
+
+.worldMap .sphere, .choroplethMap .sphere{
+  fill: var(--lighterGray);
+  stroke: var(--lightGray);
+}
+
+.worldMap .graticules, .choroplethMap .graticules{
+  fill: none;
+  stroke: var(--lightGray);
+}
+
+.worldMap .land{
+  fill: var(--lightGray);
+  stroke: var(--gray);
+}
+
+.worldMap .interiors{
+  fill: none;
+  stroke: var(--gray);
+}
+
+.worldMap .circle{
+  fill: var(--darkGreen);
+  opacity: 0.5;
 }

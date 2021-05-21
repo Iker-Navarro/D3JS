@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 import { NavBar } from './components/layout/NavBar/NavBar';
 import { HomePage } from './components/pages/HomePage/HomePage';
 import { AboutPage } from './components/pages/AboutPage/AboutPage';
@@ -12,7 +12,7 @@ import { useWindowSize } from './hooks/useWindowSize';
 import { useWorldMap } from './hooks/useWorldMap';
 // import { useWeeklyData } from "./hooks/useWeeklyData";
 import { useDailyData } from "./hooks/useDailyData";
-// import { useLocalData } from "./hooks/useLocalData";
+import { useLocalData } from "./hooks/useLocalData";
 
 /*
 Central component of the application, contains the general structure of the application
@@ -26,19 +26,16 @@ function App() {
   
   // Hook responsible for detecting window resizes
   const windowWidth = useWindowSize();
-
-  // probably will be removed for the final version
-  // const weeklyData = useWeeklyData();
   
   //When fetched dailydata consists of [deaths, cases, recovered] in the specified order
   const dailyData = useDailyData();
 
   // Hook to load the data from open data euskadi // still unused
-  //const localData = useLocalData();
+  const localData = useLocalData();
 
   // Hook to load the data to represent world map
   const worldMap = useWorldMap();
-
+  
   return (
     <Router>
       <NavBar />
@@ -57,8 +54,9 @@ function App() {
             <DataByCountryPage worldMap={worldMap} data={dailyData} width={windowWidth} />
           </Route>
           <Route path="/local">
-            <LocalDataPage />
+            <LocalDataPage data={localData} width={windowWidth} />
           </Route>
+          <Redirect to="/" />
         </Switch>
         <Footer />
       </div>

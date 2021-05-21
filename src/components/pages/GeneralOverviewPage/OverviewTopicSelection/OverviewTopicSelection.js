@@ -19,11 +19,7 @@ export const OverviewTopicSelection = ({title, data, yValueIncrement, yValueTota
             <div className="row">
                 <LineChart data={data.total} yValue={yValueTotal} width={width}/>
             </div>
-            <div className="row">
-                <div className="col-12">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus turpis massa tincidunt dui ut ornare lectus sit. Semper quis lectus nulla at volutpat. Laoreet non curabitur gravida arcu ac tortor dignissim.                 
-                </div>
-            </div>
+            <hr></hr>
             <h3>Daily increment:</h3>
             <div className="row">
                 <LineChart data={data.total} yValue={yValueIncrement} width={width}/>

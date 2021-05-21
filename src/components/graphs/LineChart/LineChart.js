@@ -42,7 +42,7 @@ export const LineChart = ({data, width, yValue}) => {
         .y(d => yScale(yValue(d)));
 
     return (
-        <svg width={width} height={height} >
+        <svg width={width} height={height}>
             <g transform={`translate(${margin.left}, ${margin.top})`}>
                 <XAxis xScale={xScale} innerHeight={innerHeight} windowWidth={width} />
                 <YAxis yScale={yScale} innerWidth={innerWidth} />
@@ -51,7 +51,6 @@ export const LineChart = ({data, width, yValue}) => {
                     <text textAnchor="middle"></text>
                     <circle r="3"></circle>
                 </g>
-                
                 <rect className="overlay" width={innerWidth} height={innerHeight} opacity="0" onMouseMove={mouseMove} onMouseOut={mouseOut} onMouseOver={mouseOver}></rect>
             </g>
         </svg>
@@ -76,7 +75,7 @@ export const LineChart = ({data, width, yValue}) => {
             .attr( 
                 'transform',
                 `translate(0,-10)`,)
-            .text(yValue(d0) + " " + xValue(d0));
+            .text(yValue(d0));
         }
     }
 

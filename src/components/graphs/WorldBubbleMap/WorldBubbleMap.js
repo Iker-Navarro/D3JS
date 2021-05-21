@@ -3,7 +3,6 @@ import { format } from 'd3-format';
 import { geoGraticule, geoNaturalEarth1, geoPath } from 'd3-geo';
 import { scaleSqrt } from 'd3-scale';
 import { useMemo } from 'react';
-import "./WorldBubbleMap.css";
 
 /*
 
@@ -17,11 +16,12 @@ const sizeValue = d => d.amount;
 const maxRadius = 20;
 
 export const WorldBubbleMap = ({ data, worldAtlas: { land, interiors }, innerWidth, innerHeight}) => {
-  
+  // map configurations
   const projection = geoNaturalEarth1().fitSize([innerWidth, innerHeight], land);
   const graticule = geoGraticule();
   const path = geoPath(projection);
 
+  // if the maximum happens to be 0 nothing will be rendered
   const maximum = max(data, sizeValue);
 
   const sizeScale = scaleSqrt()
@@ -38,7 +38,7 @@ export const WorldBubbleMap = ({ data, worldAtlas: { land, interiors }, innerWid
               <path className="graticules" d={path(graticule())} />
               {
                 land.features.map(feature => (
-                  <path className="land" d={path(feature)} />
+                  <path key={feature.id} className="land" d={path(feature)} />
                 ))
               }
               <path className="interiors" d={path(interiors)} />
@@ -51,7 +51,7 @@ export const WorldBubbleMap = ({ data, worldAtlas: { land, interiors }, innerWid
         maximum !== 0 ? data.map(d => {
           const [x, y] = projection([d.Long, d.Lat]);
           return (
-            <circle className="circle" cx={x} cy={y} r={sizeScale(sizeValue(d))}>
+            <circle key={Math.random()} className="circle" cx={x} cy={y} r={sizeScale(sizeValue(d))}>
               <title>{d.CountryRegion}:{thousandsFormatter(sizeValue(d))}</title>
             </circle>
           );

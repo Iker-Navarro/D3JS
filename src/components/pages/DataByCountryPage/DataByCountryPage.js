@@ -1,23 +1,42 @@
-import { useState } from "react";
+import { Redirect, Route, useRouteMatch } from "react-router";
+import { InternalMenu } from "../../layout/InternalMenu/InternalMenu";
+import { NoOptionSelected } from "../../layout/NoOptionSelected/NoOptionSelected";
+import { WorldChoroplethMap } from "./WorldChoroplethMap/WorldChoroplethMap";
+import { WorldMultiLinePlot } from "./WorldMultiLinePlot/WorldMultiLinePlot";
 import { WorldStatusMap } from "./WorldStatusMap/WorldStatusMap";
 
-export const DataByCountryPage = ({worldMap, data, width}) => {
-    // hook responsible for detecting brushing on WorldStatusMap
-    // Needs to be out here as the useState hook cant be called conditionally
-    const [brushExtent, setBrushExtent] = useState(null);
+/*
+    Data by country root component with different routes foreach of the components
+*/
 
-    // TODO - Create and add loading component
-    if(!worldMap || !data)
-        return(<div>Loading...</div>);
-    
-    // data destructuring
-    const [deaths, cases, recovered] = data;
-    
+export const DataByCountryPage = ({worldMap, data, width}) => {
+    const { path, url } = useRouteMatch();
+
+    // Internal menu configuration
+    const routeOptions = ["/bubbleMap", "/choropleth", "/evolution"];
+    const navOptions =  [
+        { to: url + routeOptions[0], text: "Bubble map" },
+        { to: url + routeOptions[1], text: "Choropleth map" },
+        { to: url + routeOptions[2], text: "Pandemic evolution by country" },
+    ]
     return (
         <>
             <h1 className="text-center mt-3">DATA BY COUNTRY</h1>
             <hr></hr>
-            <WorldStatusMap brushExtent={brushExtent} setBrushExtent={setBrushExtent} data={deaths} worldMap={worldMap} width={width} />
+            <InternalMenu options={navOptions} />
+            <Route path={`${path}`} exact>
+                <NoOptionSelected />
+            </Route>
+            <Route path={path +routeOptions[0]}>
+                <WorldStatusMap data={data} worldMap={worldMap} width={width} />
+            </Route>
+            <Route path={path +routeOptions[1]}>
+                <WorldChoroplethMap data={data} worldAtlas={worldMap} width={width} />
+            </Route>
+            <Route path={path +routeOptions[2]}>
+              <WorldMultiLinePlot data={data} width={width} />
+            </Route>
+            <Redirect to={path} />
         </>
     );
 }
